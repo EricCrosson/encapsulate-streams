@@ -40,7 +40,6 @@
     },
     "homepage": "https://github.com/EricCrosson/encapsulate-streams",
     "dependencies": {
-        "@strong-roots-capital/barrier": "^1.0.1",
         "@types/readable-stream": "^2.3.5"
     },
     "devDependencies": {

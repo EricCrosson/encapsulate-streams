@@ -4,7 +4,6 @@
  */
 
 import { Transform, Writable, PassThrough } from 'readable-stream'
-import makeBarrier from '@strong-roots-capital/barrier'
 
 
 /**
@@ -29,14 +28,16 @@ export default function encapsulateStreams(
         return source
     }
 
-    let barrier = makeBarrier()
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let sharedCallback: (value: any) => void = () => {}
 
     const projector = new Transform({objectMode: true})
 
     const inspector = new Writable({
         objectMode: true,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         write(chunk: any, _: string, callback: (error?: Error | null) => void) {
-            barrier(chunk)
+            sharedCallback(chunk)
             callback()
         }
     })
@@ -49,12 +50,11 @@ export default function encapsulateStreams(
         objectMode: true,
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         transform(chunk: any, _: string, callback: (error?: Error, data?: any) => void) {
-            projector.push(chunk)
-            barrier().then(([value]) => {
-                barrier = makeBarrier()
+            sharedCallback = (value) => {
                 this.push(value)
                 callback()
-            })
+            }
+            projector.push(chunk)
         }
     })
 }

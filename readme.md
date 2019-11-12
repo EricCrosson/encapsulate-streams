@@ -90,7 +90,7 @@ main()
 
 ▸ **encapsulateStreams**(...streams: *`Transform`[]*): `Transform`
 
-*Defined in [encapsulate-streams.ts:17](https://github.com/EricCrosson/encapsulate-streams/blob/b7efbac/src/encapsulate-streams.ts#L17)*
+*Defined in [encapsulate-streams.ts:16](https://github.com/EricCrosson/encapsulate-streams/blob/8d3f50b/src/encapsulate-streams.ts#L16)*
 
 Encapsulate multiple transform-streams as a single, encapsulating transform stream.
 
