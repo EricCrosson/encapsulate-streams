@@ -1,15 +1,18 @@
-# encapsulate-streams [![Build status](https://travis-ci.org/EricCrosson/encapsulate-streams.svg?branch=master)](https://travis-ci.org/EricCrosson/encapsulate-streams) [![npm version](https://img.shields.io/npm/v/encapsulate-streams.svg)](https://npmjs.org/package/encapsulate-streams) [![codecov](https://codecov.io/gh/EricCrosson/encapsulate-streams/branch/master/graph/badge.svg)](https://codecov.io/gh/EricCrosson/encapsulate-streams)
 
-> Offer a pipeline of multiple transform streams as a single,
-> encapsulating transform stream
+encapsulate-streams [![Build status](https://travis-ci.org/EricCrosson/encapsulate-streams.svg?branch=master)](https://travis-ci.org/EricCrosson/encapsulate-streams) [![npm version](https://img.shields.io/npm/v/encapsulate-streams.svg)](https://npmjs.org/package/encapsulate-streams) [![codecov](https://codecov.io/gh/EricCrosson/encapsulate-streams/branch/master/graph/badge.svg)](https://codecov.io/gh/EricCrosson/encapsulate-streams)
+====================================================================================================================================================================================================================================================================================================================================================================================================================================================
 
-## Install
+> Offer a pipeline of multiple transform streams as a single, encapsulating transform stream
+
+Install
+-------
 
 ```shell
 npm install encapsulate-streams
 ```
 
-## Use
+Use
+---
 
 ```typescript
 import encapsulateStreams from 'encapsulate-streams'
@@ -39,7 +42,7 @@ function transform<I, O>(f: (chunk: I) => O): Transform {
 function writable<I, O>(f: (chunk: I) => O): Writable {
     return new Writable({
         objectMode: true,
-        write(chunk: I, _: string, callback: (error?: Error | null) => void) {
+        write(chunk: I, _: string, callback: (error?: Error \| null) => void) {
             f(chunk)
             callback()
         }
@@ -70,3 +73,35 @@ function main() {
 main()
 //=>[ 10, 20, 30, 40 ]
 ```
+
+## Index
+
+### Functions
+
+* [encapsulateStreams](#encapsulatestreams)
+
+---
+
+## Functions
+
+<a id="encapsulatestreams"></a>
+
+###  encapsulateStreams
+
+▸ **encapsulateStreams**(...streams: *`Transform`[]*): `Transform`
+
+*Defined in [encapsulate-streams.ts:17](https://github.com/EricCrosson/encapsulate-streams/blob/b7efbac/src/encapsulate-streams.ts#L17)*
+
+Encapsulate multiple transform-streams as a single, encapsulating transform stream.
+
+**Parameters:**
+
+| Name | Type | Description |
+| ------ | ------ | ------ |
+| `Rest` streams | `Transform`[] |  Streams to encapsulate |
+
+**Returns:** `Transform`
+A transform-stream encapsulating given streams
+
+___
+
