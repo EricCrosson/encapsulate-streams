@@ -1,6 +1,6 @@
 {
     "name": "encapsulate-streams",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "description": "Offer a pipeline of multiple streams as a single, encapsulating stream ",
     "main": "dist/src/encapsulate-streams.js",
     "types": "dist/src/encapsulate-streams.d.ts",
